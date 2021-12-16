@@ -335,20 +335,20 @@ addLayer("i", {
         {
             title: "The Beginning of the Idea",
             description: "Double your point gain.",
-            cost: new Decimal(4),
+            cost: new Decimal(1),
         },
         12:
         {
             title: "It's a Great Idea",
             description: "Triple your point gain.",
-            cost: new Decimal(8),
+            cost: new Decimal(4),
             unlocked() { return hasUpgrade("i", 11) },
         },
         13:
         {
             title: "Incremental Game?",
             description: "Boost Point gain based on Incremental Points",
-            cost: new Decimal(30),
+            cost: new Decimal(10),
             unlocked() { return hasUpgrade("i", 12) },
                 effect() 
                 {
@@ -360,7 +360,7 @@ addLayer("i", {
         {
             title: "Or Maybe Idle Game",
             description: "Boost Point gain based on Points",
-            cost: new Decimal(80),
+            cost: new Decimal(20),
             unlocked() { return hasUpgrade("i", 13) },
                 effect() 
                 {
@@ -372,7 +372,7 @@ addLayer("i", {
         {
             title: "I should start making the game?",
             description: "Boost Incremental Points based on Incremental Points",
-            cost: new Decimal(200),
+            cost: new Decimal(100),
             unlocked() { return hasUpgrade("i", 14) },
                 effect() 
                 {
