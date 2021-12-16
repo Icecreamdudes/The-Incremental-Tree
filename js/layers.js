@@ -76,7 +76,7 @@ addLayer("i", {
     },
     buyables: {
     11: {
-        cost(x) { return new Decimal(300).pow(x.div(50)).mul(300) },
+        cost(x) { return new Decimal(20).pow(x.div(50)).mul(20) },
         title: "Learn Coding",
         unlocked() { return hasUpgrade("i", 15) },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
@@ -97,7 +97,7 @@ addLayer("i", {
         },
     },
         12: {
-        cost(x) { return new Decimal(600).pow(x.div(50)).mul(600) },
+        cost(x) { return new Decimal(40).pow(x.div(50)).mul(40) },
         title: "Javascript",
         unlocked() { return (tmp.i.buyables[11].effect||0)>=8 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
@@ -118,7 +118,7 @@ addLayer("i", {
         },
     },
         13: {
-        cost(x) { return new Decimal(1000).pow(x.div(50)).mul(1000) },
+        cost(x) { return new Decimal(100).pow(x.div(50)).mul(100) },
         title: "Python",
         unlocked() { return (tmp.i.buyables[12].effect||0)>=8 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
@@ -139,7 +139,7 @@ addLayer("i", {
         },
     },
         14: {
-        cost(x) { return new Decimal(5000).pow(x.div(50)).mul(5000) },
+        cost(x) { return new Decimal(400).pow(x.div(50)).mul(400) },
         title: "C#",
         unlocked() { return (tmp.i.buyables[13].effect||0)>=5 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
