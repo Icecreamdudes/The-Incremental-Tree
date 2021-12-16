@@ -160,7 +160,7 @@ addLayer("i", {
         },
     },
         21: {
-        cost(x) { return new Decimal(1e11).pow(x.div(25)).mul(1e11) },
+        cost(x) { return new Decimal(1e8).pow(x.div(25)).mul(1e8) },
         title: "Gather Ideas",
         unlocked() { return (hasUpgrade('i', 23))},
         canAfford() { return player[this.layer].points.gte(this.cost()) },
@@ -181,7 +181,7 @@ addLayer("i", {
         },
     },
         22: {
-        cost(x) { return new Decimal(1e14).pow(x.div(25)).mul(1e14) },
+        cost(x) { return new Decimal(1e11).pow(x.div(25)).mul(1e11) },
         title: "Clicker",
         unlocked() { return (hasUpgrade('i', 31))},
         canAfford() { return player[this.layer].points.gte(this.cost()) },
@@ -202,7 +202,7 @@ addLayer("i", {
         },
     },
         23: {
-        cost(x) { return new Decimal(2e15).pow(x.div(25)).mul(2e15) },
+        cost(x) { return new Decimal(1e12).pow(x.div(25)).mul(1e12) },
         title: "Passive Income",
         unlocked() { return (tmp.i.buyables[22].effect||0)>=4 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
@@ -223,7 +223,7 @@ addLayer("i", {
         },
     },
         24: {
-        cost(x) { return new Decimal(1e30).pow(x.div(25)).mul(1e30) },
+        cost(x) { return new Decimal(1e22).pow(x.div(25)).mul(1e25) },
         title: "Upgrades",
         unlocked() { return (tmp.i.buyables[23].effect||0)>=10 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
@@ -341,14 +341,14 @@ addLayer("i", {
         {
             title: "It's a Great Idea",
             description: "Triple your point gain.",
-            cost: new Decimal(4),
+            cost: new Decimal(2),
             unlocked() { return hasUpgrade("i", 11) },
         },
         13:
         {
             title: "Incremental Game?",
             description: "Boost Point gain based on Incremental Points",
-            cost: new Decimal(10),
+            cost: new Decimal(5),
             unlocked() { return hasUpgrade("i", 12) },
                 effect() 
                 {
@@ -384,7 +384,7 @@ addLayer("i", {
         {
             title: "Start making the game",
             description: "Gain 100% of Incremental Points per second, and unlocks cool stuff",
-            cost: new Decimal(200000),
+            cost: new Decimal(25000),
             unlocked() { return (tmp.i.buyables[14].effect||0)>=6 },
             branches: [11, 12, 13, 14, 15],
         },
@@ -392,7 +392,7 @@ addLayer("i", {
         {
             title: "Automated Coding Lessons",
             description: "Autobuys the first 4 buyables",
-            cost: new Decimal(1e13),
+            cost: new Decimal(1e12),
             unlocked() { return (tmp.i.buyables[21].effect||0)>=4 },
             branches: [11, 12, 13, 14, 15, 23],
         },
