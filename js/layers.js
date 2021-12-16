@@ -5,7 +5,7 @@ addLayer("i", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-		points: new Decimal(1),
+		points: new Decimal(0),
     }},
     color: "white",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
@@ -2376,7 +2376,7 @@ addLayer("l", {
         
         update(delta) 
         {
-            player.l.$persecond = player.points.log10(1).log10(1).pow(0.5).div(500).mul(player.cc.patreoneffect)
+            player.l.$persecond = player.points.plus(10).log10().log10().pow(0.5).div(500).mul(player.cc.patreoneffect)
             if (hasUpgrade("l", 21)) player.l.$persecond = player.l.$persecond.mul(upgradeEffect("l", 21))
             player.l.points = player.l.points.add(player.l.$persecond.mul(delta))
             player.l.savedmoneyeffect = player.l.savedmoney.pow(10.5).add(1)
