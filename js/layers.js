@@ -1117,9 +1117,9 @@ addLayer("cc", {
         title: "Reset Position",
         canAfford() { return player.points.gte(this.cost()) },
         buy() {
-            player.cc.x = player.cc.x.sub(player.cc.x)
-            player.cc.y = player.cc.y.sub(player.cc.y)
-            player.cc.z = player.cc.z.sub(player.cc.z)
+            player.cc.x = new Decimal(0)
+            player.cc.y = new Decimal(0)
+            player.cc.z = new Decimal(0)
             player.cc.autowalkingdirection = new Decimal(0)
         },
         },
