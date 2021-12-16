@@ -2305,7 +2305,7 @@ addLayer("l", {
             cost: new Decimal(4.95),
                 effect() 
                 {
-                     return player[this.layer].points.pow(10).mul(1e10)
+                     return player[this.layer].points.pow(10).mul(1e10).add(1)
                 },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -2317,7 +2317,7 @@ addLayer("l", {
             description: "Boosts Incremental Points based on $",
                 effect() 
                 {
-                     return player[this.layer].points.pow(9.5).mul(1e10)
+                     return player[this.layer].points.pow(9.5).mul(1e10).add(1)
                 },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -2329,7 +2329,7 @@ addLayer("l", {
             description: "Boosts Cookies based on $",
                 effect() 
                 {
-                     return player[this.layer].points.pow(2.4).mul(1e1)
+                     return player[this.layer].points.pow(2.4).mul(1e1).add(1)
                 },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
@@ -2348,7 +2348,7 @@ addLayer("l", {
             cost: new Decimal(139.99),
                 effect() 
                 {
-                     return player[this.layer].points.pow(0.02)
+                     return player[this.layer].points.pow(0.02).add(1)
                 },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
