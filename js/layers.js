@@ -29,7 +29,7 @@ addLayer("i", {
         if (hasUpgrade('l', 12)) mult = mult.times(upgradeEffect('l', 12))
         return mult
     },
-    passiveGeneration() { return (hasUpgrade('i', 23)) },
+    passiveGeneration() { return (hasUpgrade('i', 23)) || (hasUpgrade('cc', 12))},
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
@@ -78,7 +78,7 @@ addLayer("i", {
     11: {
         cost(x) { return new Decimal(20).pow(x.div(50)).mul(20) },
         title: "Learn Coding",
-        unlocked() { return hasUpgrade("i", 15) },
+        unlocked() { return hasUpgrade("i", 15) || (tmp.i.buyables[31].effect||0)>=2 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -99,7 +99,7 @@ addLayer("i", {
         12: {
         cost(x) { return new Decimal(40).pow(x.div(50)).mul(40) },
         title: "Javascript",
-        unlocked() { return (tmp.i.buyables[11].effect||0)>=8 },
+        unlocked() { return (tmp.i.buyables[11].effect||0)>=8 || (tmp.i.buyables[31].effect||0)>=2 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -120,7 +120,7 @@ addLayer("i", {
         13: {
         cost(x) { return new Decimal(100).pow(x.div(50)).mul(100) },
         title: "Python",
-        unlocked() { return (tmp.i.buyables[12].effect||0)>=8 },
+        unlocked() { return (tmp.i.buyables[12].effect||0)>=8 || (tmp.i.buyables[31].effect||0)>=2},
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -141,7 +141,7 @@ addLayer("i", {
         14: {
         cost(x) { return new Decimal(400).pow(x.div(50)).mul(400) },
         title: "C#",
-        unlocked() { return (tmp.i.buyables[13].effect||0)>=5 },
+        unlocked() { return (tmp.i.buyables[13].effect||0)>=5 || (tmp.i.buyables[31].effect||0)>=2},
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -162,7 +162,7 @@ addLayer("i", {
         21: {
         cost(x) { return new Decimal(1e8).pow(x.div(25)).mul(1e8) },
         title: "Gather Ideas",
-        unlocked() { return (hasUpgrade('i', 23))},
+        unlocked() { return (hasUpgrade('i', 23)) || (tmp.i.buyables[31].effect||0)>=2},
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -183,7 +183,7 @@ addLayer("i", {
         22: {
         cost(x) { return new Decimal(1e11).pow(x.div(25)).mul(1e11) },
         title: "Clicker",
-        unlocked() { return (hasUpgrade('i', 31))},
+        unlocked() { return (hasUpgrade('i', 31)) || (tmp.i.buyables[31].effect||0)>=2},
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -204,7 +204,7 @@ addLayer("i", {
         23: {
         cost(x) { return new Decimal(1e12).pow(x.div(25)).mul(1e12) },
         title: "Passive Income",
-        unlocked() { return (tmp.i.buyables[22].effect||0)>=4 },
+        unlocked() { return (tmp.i.buyables[22].effect||0)>=4 || (tmp.i.buyables[31].effect||0)>=2},
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -225,7 +225,7 @@ addLayer("i", {
         24: {
         cost(x) { return new Decimal(1e22).pow(x.div(25)).mul(1e25) },
         title: "Upgrades",
-        unlocked() { return (tmp.i.buyables[23].effect||0)>=10 },
+        unlocked() { return (tmp.i.buyables[23].effect||0)>=10 || (tmp.i.buyables[31].effect||0)>=2},
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -583,7 +583,7 @@ addLayer("cc", {
         11: {
         cost(x) { return new Decimal(4).pow(x.div(40)).mul(4) },
         title: "Cursor",
-        unlocked() { return hasUpgrade("cc", 12) },
+        unlocked() { return hasUpgrade("cc", 12)  || (tmp.cc.buyables[41].effect||0)>=1 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -604,7 +604,7 @@ addLayer("cc", {
         12: {
         cost(x) { return new Decimal(200).pow(x.div(20)).mul(200) },
         title: "Grandma",
-        unlocked() { return (tmp.cc.buyables[11].effect||0)>=40 },
+        unlocked() { return (tmp.cc.buyables[11].effect||0)>=40  || (tmp.cc.buyables[41].effect||0)>=1 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -625,7 +625,7 @@ addLayer("cc", {
         13: {
         cost(x) { return new Decimal(8000).pow(x.div(19)).mul(8000) },
         title: "Cookie Farm",
-        unlocked() { return (tmp.cc.buyables[12].effect||0)>=6 },
+        unlocked() { return (tmp.cc.buyables[12].effect||0)>=6  || (tmp.cc.buyables[41].effect||0)>=1 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -644,9 +644,9 @@ addLayer("cc", {
         },
         },
         14: {
-        cost(x) { return new Decimal(1e10).pow(x.div(16)).mul(1e10) },
+        cost(x) { return new Decimal(1e9).pow(x.div(16)).mul(1e9) },
         title: "Cookie Mine",
-        unlocked() { return (tmp.cc.buyables[12].effect||0)>=25 },
+        unlocked() { return (tmp.cc.buyables[12].effect||0)>=25  || (tmp.cc.buyables[41].effect||0)>=1 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -665,9 +665,9 @@ addLayer("cc", {
         },
         },
         21: {
-        cost(x) { return new Decimal(1e14).pow(x.div(14)).mul(1e14) },
+        cost(x) { return new Decimal(1e12).pow(x.div(14)).mul(1e12) },
         title: "Cookie Factory",
-        unlocked() { return (tmp.cc.buyables[14].effect||0)>=7 },
+        unlocked() { return (tmp.cc.buyables[14].effect||0)>=7  || (tmp.cc.buyables[41].effect||0)>=1 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -686,9 +686,9 @@ addLayer("cc", {
         },
         },
         22: {
-        cost(x) { return new Decimal(1e18).pow(x.div(13)).mul(1e18) },
+        cost(x) { return new Decimal(1e15).pow(x.div(13)).mul(1e15) },
         title: "Cookie Bank",
-        unlocked() { return (tmp.cc.buyables[21].effect||0)>=4 },
+        unlocked() { return (tmp.cc.buyables[21].effect||0)>=4  || (tmp.cc.buyables[41].effect||0)>=1 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -707,9 +707,9 @@ addLayer("cc", {
         },
         },
         23: {
-        cost(x) { return new Decimal(1e23).pow(x.div(12)).mul(1e23) },
+        cost(x) { return new Decimal(1e20).pow(x.div(12)).mul(1e20) },
         title: "Cookie Temple",
-        unlocked() { return (tmp.cc.buyables[22].effect||0)>=5 },
+        unlocked() { return (tmp.cc.buyables[22].effect||0)>=5  || (tmp.cc.buyables[41].effect||0)>=1 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -728,9 +728,9 @@ addLayer("cc", {
         },
         },
         24: {
-        cost(x) { return new Decimal(1e29).pow(x.div(11)).mul(1e29) },
+        cost(x) { return new Decimal(1e26).pow(x.div(11)).mul(1e26) },
         title: "Cookie Wizard Tower",
-        unlocked() { return (tmp.cc.buyables[23].effect||0)>=4.5 },
+        unlocked() { return (tmp.cc.buyables[23].effect||0)>=4.5  || (tmp.cc.buyables[41].effect||0)>=1 },
         canAfford() { return player[this.layer].points.gte(this.cost()) },
         buy() {
             player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -751,7 +751,7 @@ addLayer("cc", {
         31: {
         cost(x) { return new Decimal(1000).pow(x.div(20)).mul(1000) },
         title: "Cookie Shipment",
-        unlocked() { return (tmp.cc.buyables[24].effect||0)>=3.8 },
+        unlocked() { return (tmp.cc.buyables[24].effect||0)>=3.8  || (tmp.cc.buyables[41].effect||0)>=1 },
         canAfford() { return player.cc.sugarlumps.gte(this.cost()) },
         buy() {
             player.cc.sugarlumps = player.cc.sugarlumps.sub(this.cost())
@@ -772,7 +772,7 @@ addLayer("cc", {
         32: {
         cost(x) { return new Decimal(10000).pow(x.div(18)).mul(10000) },
         title: "Cookie Alchemy Lab",
-        unlocked() { return (tmp.cc.buyables[31].effect||0)>=4.5 },
+        unlocked() { return (tmp.cc.buyables[31].effect||0)>=4.5  || (tmp.cc.buyables[41].effect||0)>=1 },
         canAfford() { return player.cc.sugarlumps.gte(this.cost()) },
         buy() {
             player.cc.sugarlumps = player.cc.sugarlumps.sub(this.cost())
@@ -793,7 +793,7 @@ addLayer("cc", {
         33: {
         cost(x) { return new Decimal(100000).pow(x.div(16)).mul(100000) },
         title: "Cookie Alchemy Lab",
-        unlocked() { return (tmp.cc.buyables[32].effect||0)>=4.0 },
+        unlocked() { return (tmp.cc.buyables[32].effect||0)>=4.0  || (tmp.cc.buyables[41].effect||0)>=1 },
         canAfford() { return player.cc.sugarlumps.gte(this.cost()) },
         buy() {
             player.cc.sugarlumps = player.cc.sugarlumps.sub(this.cost())
@@ -814,7 +814,7 @@ addLayer("cc", {
         34: {
         cost(x) { return new Decimal(1000000).pow(x.div(13)).mul(1000000) },
         title: "Cookie Time Machine",
-        unlocked() { return (tmp.cc.buyables[33].effect||0)>=3.4 },
+        unlocked() { return (tmp.cc.buyables[33].effect||0)>=3.4 || (tmp.cc.buyables[41].effect||0)>=1 },
         canAfford() { return player.cc.sugarlumps.gte(this.cost()) },
         buy() {
             player.cc.sugarlumps = player.cc.sugarlumps.sub(this.cost())
@@ -833,9 +833,9 @@ addLayer("cc", {
         },
         },
         41: {
-        cost(x) { return new Decimal(1e38).pow(x.div(3.55)).mul(1e38) },
+        cost(x) { return new Decimal(1e37).pow(x.div(3.55)).mul(1e37) },
         title: "Cookie Ascension",
-        unlocked() { return (tmp.cc.buyables[34].effect||0)>=2.4 },
+        unlocked() { return (tmp.cc.buyables[34].effect||0)>=2.4 || (tmp.cc.buyables[41].effect||0)>=1 },
         canAfford() { return player.cc.points.gte(this.cost()) },
         buy() {
             player.cc.points = player.cc.points.sub(this.cost())
@@ -871,7 +871,7 @@ addLayer("cc", {
         },
         },
         51: {
-        cost(x) { return new Decimal(1000).pow(x.div(20)).mul(1000) },
+        cost(x) { return new Decimal(100).pow(x.div(20)).mul(100) },
         title: "Cookie Antimatter Condenser",
         unlocked() { return (tmp.cc.buyables[41].effect||0)>=2.5 },
         canAfford() { return player.cc.heavenlychips.gte(this.cost()) },
@@ -892,7 +892,7 @@ addLayer("cc", {
         },
         },
         52: {
-        cost(x) { return new Decimal(10000).pow(x.div(18)).mul(10000) },
+        cost(x) { return new Decimal(1000).pow(x.div(18)).mul(1000) },
         title: "Cookie Prism",
         unlocked() { return (tmp.cc.buyables[51].effect||0)>=4.2 },
         canAfford() { return player.cc.heavenlychips.gte(this.cost()) },
@@ -913,7 +913,7 @@ addLayer("cc", {
         },
         },
         53: {
-        cost(x) { return new Decimal(100000).pow(x.div(15)).mul(100000) },
+        cost(x) { return new Decimal(10000).pow(x.div(15)).mul(10000) },
         title: "Cookie Chancemaker",
         unlocked() { return (tmp.cc.buyables[52].effect||0)>=5.18 },
         canAfford() { return player.cc.heavenlychips.gte(this.cost()) },
@@ -934,7 +934,7 @@ addLayer("cc", {
         },
         },
         61: {
-        cost(x) { return new Decimal(1e17).pow(x.div(5)).mul(1e17) },
+        cost(x) { return new Decimal(1e16).pow(x.div(5)).mul(1e16) },
         title: "Wrinkler",
         unlocked() { return hasUpgrade("cc", 102) },
         canAfford() { return player.cc.sugarlumps.gte(this.cost()) },
@@ -955,7 +955,7 @@ addLayer("cc", {
         },
         },
         71: {
-        cost(x) { return new Decimal(1000).pow(x.div(14)).mul(1000) },
+        cost(x) { return new Decimal(100).pow(x.div(14)).mul(100) },
         title: "Cookie Antimatter Condenser",
         unlocked() { return hasUpgrade("cc", 111) },
         canAfford() { return player.cc.wrinklerjuice.gte(this.cost()) },
@@ -976,7 +976,7 @@ addLayer("cc", {
         },
         },
         72: {
-        cost(x) { return new Decimal(100000).pow(x.div(12)).mul(100000) },
+        cost(x) { return new Decimal(10000).pow(x.div(12)).mul(10000) },
         title: "Cookie Javascript Console",
         unlocked() { return (tmp.cc.buyables[71].effect||0)>=6.6 },
         canAfford() { return player.cc.wrinklerjuice.gte(this.cost()) },
@@ -997,9 +997,9 @@ addLayer("cc", {
         },
         },
         73: {
-        cost(x) { return new Decimal(100000000).pow(x.div(8)).mul(100000000) },
+        cost(x) { return new Decimal(10000000).pow(x.div(8)).mul(10000000) },
         title: "Cookie Idleverse",
-        unlocked() { return (tmp.cc.buyables[71].effect||0)>=4.89 },
+        unlocked() { return (tmp.cc.buyables[72].effect||0)>=4.89 },
         canAfford() { return player.cc.wrinklerjuice.gte(this.cost()) },
         buy() {
             player.cc.wrinklerjuice = player.cc.wrinklerjuice.sub(this.cost())
@@ -1018,7 +1018,7 @@ addLayer("cc", {
         },
         },
         81: {
-        cost(x) { return new Decimal(100).pow(x.div(20)).mul(100) },
+        cost(x) { return new Decimal(10).pow(x.div(20)).mul(10) },
         title: "X Cookie Grandma",
         unlocked() { return hasUpgrade("cc", 121) },
         canAfford() { return player.cc.xcookies.gte(this.cost()) },
@@ -1039,7 +1039,7 @@ addLayer("cc", {
         },
         },
         82: {
-        cost(x) { return new Decimal(100).pow(x.div(20)).mul(100) },
+        cost(x) { return new Decimal(10).pow(x.div(20)).mul(10) },
         title: "Y Cookie Grandma",
         unlocked() { return hasUpgrade("cc", 121) },
         canAfford() { return player.cc.ycookies.gte(this.cost()) },
@@ -1060,7 +1060,7 @@ addLayer("cc", {
         },
         },
         83: {
-        cost(x) { return new Decimal(200).pow(x.div(10)).mul(200) },
+        cost(x) { return new Decimal(20).pow(x.div(10)).mul(20) },
         title: "Z Cookie Grandma",
         unlocked() { return hasUpgrade("cc", 121) },
         canAfford() { return player.cc.zcookies.gte(this.cost()) },
@@ -1124,7 +1124,7 @@ addLayer("cc", {
         },
         },
         111: {
-        cost(x) { return new Decimal(1e9).pow(x.div(18)).mul(1e9) },
+        cost(x) { return new Decimal(1e7).pow(x.div(18)).mul(1e7) },
         title: "X Cookie Wrinkler",
         unlocked() { return hasUpgrade("cc", 181) && hasUpgrade("cc", 182)},
         canAfford() { return player.cc.xlumps.gte(this.cost()) },
@@ -1145,7 +1145,7 @@ addLayer("cc", {
         },
         },
         112: {
-        cost(x) { return new Decimal(1e9).pow(x.div(18)).mul(1e9) },
+        cost(x) { return new Decimal(1e7).pow(x.div(18)).mul(1e7) },
         title: "Y Cookie Wrinkler",
         unlocked() { return hasUpgrade("cc", 181) && hasUpgrade("cc", 182) },
         canAfford() { return player.cc.ylumps.gte(this.cost()) },
@@ -1166,7 +1166,7 @@ addLayer("cc", {
         },
         },
         113: {
-        cost(x) { return new Decimal(1e9).pow(x.div(18)).mul(1e9) },
+        cost(x) { return new Decimal(1e7).pow(x.div(18)).mul(1e7) },
         title: "Z Cookie Wrinkler",
         unlocked() { return hasUpgrade("cc", 181) && hasUpgrade("cc", 182) },
         canAfford() { return player.cc.zlumps.gte(this.cost()) },
@@ -1187,7 +1187,7 @@ addLayer("cc", {
         },
         },
         121: {
-        cost(x) { return new Decimal(100).pow(x.div(20)).mul(100) },
+        cost(x) { return new Decimal(25).pow(x.div(20)).mul(25) },
         title: "Priest Grandma",
         unlocked() { return hasUpgrade("cc", 192) },
         canAfford() { return player.cc.cookiebibles.gte(this.cost()) },
@@ -1252,7 +1252,7 @@ addLayer("cc", {
         },
         },
         141: {
-        cost(x) { return new Decimal(10).pow(x.div(20)).mul(10) },
+        cost(x) { return new Decimal(2).pow(x.div(20)).mul(2) },
         title: "Advertise Your Patreon",
         unlocked() { return hasUpgrade("l", 14) },
         canAfford() { return player.l.points.gte(this.cost()) },
@@ -1309,14 +1309,14 @@ addLayer("cc", {
         {
             title: "Cookie Engineer",
             description: "Automates the First row of buyables",
-            cost: new Decimal(1e16),
+            cost: new Decimal(1e15),
             unlocked() { return (tmp.cc.buyables[14].effect||0)>=24 },
         },
         31:
         {
             title: "Point-Cookie Synergy",
             description: "Points boost Cookie gain",
-            cost: new Decimal(1e16),
+            cost: new Decimal(1e15),
             unlocked() { return (tmp.cc.buyables[21].effect||0)>=3 },
                 effect() 
                 {
@@ -1328,7 +1328,7 @@ addLayer("cc", {
         {
             title: "Incremental Point-Cookie Synergy",
             description: "Incremental Points boost Cookie gain",
-            cost: new Decimal(1e16),
+            cost: new Decimal(1e15),
             unlocked() { return (tmp.cc.buyables[21].effect||0)>=3 },
                 effect() 
                 {
@@ -1340,7 +1340,7 @@ addLayer("cc", {
         {
             title: "Cookie-Cookie Synergy",
             description: "Cookies boost Cookie gain",
-            cost: new Decimal(1e16),
+            cost: new Decimal(1e15),
             unlocked() { return (tmp.cc.buyables[21].effect||0)>=3 },
                 effect() 
                 {
@@ -1397,7 +1397,7 @@ addLayer("cc", {
         {
             title: "Cookie Lord",
             description: "Automates the Second row of buyables",
-            cost: new Decimal(1e34),
+            cost: new Decimal(1e27),
             unlocked() { return (tmp.cc.buyables[24].effect||0)>=2 },
         },
         52:
@@ -1640,7 +1640,7 @@ addLayer("cc", {
         {
             title: "The Grandmas are Mad...",
             description: "Boosts Points based on amount of Grandmas",
-            cost: new Decimal(1e10),
+            cost: new Decimal(5e8),
             unlocked() { return (tmp.cc.buyables[53].effect||0)>=11 },
                 effect() 
                 {
@@ -1655,7 +1655,7 @@ addLayer("cc", {
         {
             title: "START THE GRANDMAPOCALYPSE",
             description: "THIS UPGRADE HAS NO OFF BUTTON. BE WARNED. SLOWS COOKIE GAIN BY 100 AND INCREASES SUGAR LUMP GAIN BY 10. IT IS UNCERTAIN ABOUT WHAT IS GOING TO HAPPEN NEXT.",
-            cost: new Decimal(1e10),
+            cost: new Decimal(1e9),
             unlocked() { return (tmp.cc.buyables[53].effect||0)>=11 },
             currencyLocation() { return player[this.layer] },
             currencyDisplayName: "Heavenly Chips",
@@ -1665,14 +1665,14 @@ addLayer("cc", {
         {
             title: "Cookie Devil",
             description: "Automates the Fifth row of buyables",
-            cost: new Decimal(1e125),
-            unlocked() { return (tmp.cc.buyables[61].effect||0)>=4 },
+            cost: new Decimal(1e120),
+            unlocked() { return (tmp.cc.buyables[61].effect||0)>=1.4},
         },
         112:
         {
             title: "Cookie Goku",
             description: "Boosts Wrinkler Juice based on time played",
-            cost: new Decimal(5000),
+            cost: new Decimal(1500),
             unlocked() { return (tmp.cc.buyables[71].effect||0)>=2.7 },
                 effect() 
                 {
@@ -1753,7 +1753,7 @@ addLayer("cc", {
         {
             title: "Z cookie synergy",
             description: "Boosts Z Cookies based on Z Cookie Grandmas",
-            cost: new Decimal(1000),
+            cost: new Decimal(250),
             unlocked() { return (tmp.cc.buyables[83].effect||0)>=2.7 },
                 effect() 
                 {
@@ -1768,7 +1768,7 @@ addLayer("cc", {
         {
             title: "Look for Dimensional Sugar Lumps?",
             description: "Boost all Dimensional Cookie gain by 10 and unlocks a new tab",
-            cost: new Decimal(25000),
+            cost: new Decimal(1000),
             unlocked() { return (tmp.cc.buyables[83].effect||0)>=3.15 },
             currencyLocation() { return player[this.layer] },
             currencyDisplayName: "Z Cookies",
@@ -1778,7 +1778,7 @@ addLayer("cc", {
         {
             title: "X cookie booster",
             description: "Boosts Sugar Lumps based on X Cookies",
-            cost: new Decimal(500000),
+            cost: new Decimal(50000),
             unlocked() { return (tmp.cc.buyables[81].effect||0)>=11 },
                 effect() 
                 {
@@ -1793,7 +1793,7 @@ addLayer("cc", {
         {
             title: "Y cookie booster",
             description: "Boosts Heavenly Chips based on Y Cookies",
-            cost: new Decimal(500000),
+            cost: new Decimal(50000),
             unlocked() { return (tmp.cc.buyables[82].effect||0)>=8.55 },
                 effect() 
                 {
@@ -1808,7 +1808,7 @@ addLayer("cc", {
         {
             title: "Z cookie booster",
             description: "Boosts X and Y Cookies based on Z Cookies",
-            cost: new Decimal(500000),
+            cost: new Decimal(50000),
             unlocked() { return (tmp.cc.buyables[83].effect||0)>=2.7 },
                 effect() 
                 {
@@ -1823,7 +1823,7 @@ addLayer("cc", {
         {
             title: "X sugar lumps booster",
             description: "Boosts X Cookies based on X Sugar Lumps",
-            cost: new Decimal(1000000),
+            cost: new Decimal(100000),
             unlocked() { return hasUpgrade("cc", 151) },
                 effect() 
                 {
@@ -1838,7 +1838,7 @@ addLayer("cc", {
         {
             title: "Y sugar lumps booster",
             description: "Boosts Y Cookies based on Y Sugar Lumps",
-            cost: new Decimal(1000000),
+            cost: new Decimal(100000),
             unlocked() { return hasUpgrade("cc", 152) },
                 effect() 
                 {
@@ -1853,7 +1853,7 @@ addLayer("cc", {
         {
             title: "Z sugar lumps booster",
             description: "Boosts Z Cookies based on Z Sugar Lumps",
-            cost: new Decimal(1000000),
+            cost: new Decimal(100000),
             unlocked() { return hasUpgrade("cc", 153) },
                 effect() 
                 {
@@ -1868,7 +1868,7 @@ addLayer("cc", {
         {
             title: "Train your mind to make you automatically run",
             description: "Automatically Walks 10 Meters Per Second, always produce Z sugar lumps",
-            cost: new Decimal(2000000),
+            cost: new Decimal(200000),
             unlocked() { return hasUpgrade("cc", 161) && hasUpgrade("cc", 162) && hasUpgrade("cc", 163) },
             currencyLocation() { return player[this.layer] },
             currencyDisplayName: "Z Sugar Lumps",
@@ -1878,7 +1878,7 @@ addLayer("cc", {
         {
             title: "Sugar Lump flavored Gatorade",
             description: "Autowalks Forward Faster based on Sugar Lumps",
-            cost: new Decimal(1e9),
+            cost: new Decimal(1e7),
             unlocked() { return hasUpgrade("cc", 171) },
                 effect() 
                 {
@@ -1893,7 +1893,7 @@ addLayer("cc", {
         {
             title: "Ascended Heavenly Chip Shoes",
             description: "Autowalks Right Faster based on Heavenly Chips",
-            cost: new Decimal(1e9),
+            cost: new Decimal(1e7),
             unlocked() { return hasUpgrade("cc", 171) },
                 effect() 
                 {
@@ -1908,7 +1908,7 @@ addLayer("cc", {
         {
             title: "The Big Boost",
             description: "Boosts Autowalking Speed based on time played",
-            cost: new Decimal(5e10),
+            cost: new Decimal(1e9),
             unlocked() { return hasUpgrade("cc", 181) && hasUpgrade("cc", 182) },
                 effect() 
                 {
@@ -1924,7 +1924,7 @@ addLayer("cc", {
         {
             title: "Unlock the third quarter of this layer",
             description: "Unlocks the Church",
-            cost: new Decimal(1e14),
+            cost: new Decimal(1e13),
             unlocked() { return hasUpgrade("cc", 191) },
             currencyLocation() { return player[this.layer] },
             currencyDisplayName: "Z Sugar Lumps",
@@ -1974,7 +1974,7 @@ addLayer("cc", {
         {
             title: "Revelation",
             description: "Boost Cultists based on Cultists",
-            cost: new Decimal(250000),
+            cost: new Decimal(7500),
             unlocked() { return hasUpgrade("cc", 203) },
                 effect() 
                 {
@@ -1996,7 +1996,7 @@ addLayer("cc", {
         {
             title: "The Final Cookie",
             description: "Automatically buys Church Buyables",
-            cost: new Decimal(100),
+            cost: new Decimal(20),
             unlocked() { return hasUpgrade("cc", 211) },
             currencyLocation() { return player[this.layer] },
             currencyDisplayName: "Patreon Subscribers",
@@ -2021,7 +2021,7 @@ addLayer("cc", {
         {
             title: "Money is Power",
             description: "Boosts Patreon Subscribers based on $",
-            cost: new Decimal(1500),
+            cost: new Decimal(200),
             unlocked() { return hasUpgrade("cc", 222) },
             currencyLocation() { return player[this.layer] },
             currencyDisplayName: "Patreon Subscribers",
@@ -2272,7 +2272,7 @@ addLayer("cc", {
         ["microtabs", "stuff"],
         ["blank", "25px"],
     ],
-    layerShown(){return hasUpgrade("i", 61)},
+    layerShown(){return hasUpgrade("i", 61) || player.cc.total.gte(1)},
 })
 addLayer("l", {
     startData() { return {
@@ -2302,7 +2302,7 @@ addLayer("l", {
         {
             title: "Big Mac",
             description: "Boosts Points based on $",
-            cost: new Decimal(4.95),
+            cost: new Decimal(2),
                 effect() 
                 {
                      return player[this.layer].points.pow(10).mul(1e10).add(1)
@@ -2312,7 +2312,7 @@ addLayer("l", {
         12:
         {
             title: "Notebook",
-            cost: new Decimal(7.49),
+            cost: new Decimal(4),
             unlocked() { return hasUpgrade("l", 11) },
             description: "Boosts Incremental Points based on $",
                 effect() 
@@ -2324,7 +2324,7 @@ addLayer("l", {
         13:
         {
             title: "Headphones",
-            cost: new Decimal(19.99),
+            cost: new Decimal(10),
             unlocked() { return hasUpgrade("l", 12) },
             description: "Boosts Cookies based on $",
                 effect() 
@@ -2336,7 +2336,7 @@ addLayer("l", {
         14:
         {
             title: "A Patreon Account (AYO?) (The Final Quarter of the Cookie Clicker Layer)",
-            cost: new Decimal(29.99),
+            cost: new Decimal(10),
             unlocked() { return hasUpgrade("l", 13) },
             description: "Unlocks a new tab in the Cookie Clicker layer",
         },
@@ -2345,7 +2345,7 @@ addLayer("l", {
             title: "Chromebook",
             description: "Boosts $ based on $",
             unlocked() { return hasUpgrade("l", 14) },
-            cost: new Decimal(139.99),
+            cost: new Decimal(50),
                 effect() 
                 {
                      return player[this.layer].points.pow(0.02).add(1)
@@ -2357,7 +2357,7 @@ addLayer("l", {
             title: "Finish the Cookie Clicker Layer",
             description: "Get Ready for another layer...",
             unlocked() { return hasUpgrade("l", 21) },
-            cost: new Decimal(250),
+            cost: new Decimal(50),
         },
     },
     buyables:
@@ -2376,7 +2376,7 @@ addLayer("l", {
         
         update(delta) 
         {
-            player.l.$persecond = player.points.plus(10).log10().log10().pow(0.5).div(500).mul(player.cc.patreoneffect)
+            if (hasUpgrade("cc", 211)) player.l.$persecond = player.points.plus(10).log10().log10().pow(0.5).div(500).mul(player.cc.patreoneffect)
             if (hasUpgrade("l", 21)) player.l.$persecond = player.l.$persecond.mul(upgradeEffect("l", 21))
             player.l.points = player.l.points.add(player.l.$persecond.mul(delta))
             player.l.savedmoneyeffect = player.l.savedmoney.pow(10.5).add(1)
